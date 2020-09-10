@@ -42,10 +42,10 @@ ipd.Audio(test_file)
 
 ### Sample Waveform
 
-time = np.arange(0, len(y)) / sr
+file_time = np.arange(0, len(y)) / sr
 
 plt.figure(figsize=(18, 6))
-plt.plot(time[2000:2110], y[2000:2110])
+plt.plot(file_time[2000:2110], y[2000:2110])
 plt.ylabel('amplitude')
 plt.xlabel('time (s)')
 plt.savefig('images/sample_wave.png')
