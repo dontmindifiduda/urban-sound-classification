@@ -83,7 +83,7 @@ class ConvBlock(nn.Module):
         self.conv2 = nn.Sequential(
             nn.Conv2d(out_channels, out_channels, 3, 1, 1),
             nn.ReLU(),
-            nn.Dropout(0.4)
+            nn.Dropout(0.5)
         )
 
         self._init_weights()
@@ -116,7 +116,7 @@ class Classifier(nn.Module):
         )
         
         self.fc = nn.Sequential(
-            nn.Dropout(0.5),
+            nn.Dropout(0.4),
             nn.Linear(512, 128),
             nn.PReLU(),
             nn.BatchNorm1d(128),
@@ -132,7 +132,7 @@ class Classifier(nn.Module):
         return x
 
 model_params = {
-    'num_epochs': 50, # increase after testing
+    'num_epochs': 50, 
     'batch_size': 64,
     'learning_rate': 0.001,
     'num_clases': 10, 
@@ -240,9 +240,6 @@ for sub_dir in sub_dirs:
 
             avg_val_loss += loss.item() / len(valid_loader)
             
-        # valid_preds_tensor = torch.from_numpy(valid_preds)
-        # y_valid_tensor = torch.from_numpy(y_valid).type_as(valid_preds_tensor)
-        # epoch_val_loss = criterion(valid_preds_tensor, y_valid)
         accuracy = sum(1 for x,y in zip(valid_labels, valid_preds.argmax(axis=1).tolist()) if x == y) / len(valid_labels)    
             
         scheduler.step()

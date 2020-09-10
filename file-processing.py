@@ -52,8 +52,8 @@ if not os.path.exists(model_save_directory):
 melspec_params = {
     'n_mels': 128,
     'duration': 4*22050,
-    'hop_length': 347*4,
-    'n_fft': 128*20,
+    'hop_length': 512,
+    'n_fft': 2048,
     'fmin': 20
 }
 
